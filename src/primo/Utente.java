@@ -1,5 +1,5 @@
 package primo;
- 
+  
 public class Utente {
 	
 	private int livello;

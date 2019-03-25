@@ -1,5 +1,5 @@
 package secondo;
-
+ 
 class Principale {
 	
 	static primo.Utente temporaneo = null;

@@ -1,5 +1,5 @@
 package primo;
-
+ 
 import secondo.EccezioneLogin;
 
 class Output {

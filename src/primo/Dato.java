@@ -1,7 +1,7 @@
 package primo;
 
 public class Dato {
-	
+	 
 	private int livello;
 	private String hash_dato;
 	
