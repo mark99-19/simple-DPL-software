@@ -3,6 +3,7 @@ package secondo;
 class Principale {
 	
 	static primo.Utente temporaneo = null;
+	static boolean a = true;
 	
 	public static void main(String[] args) {
 		
@@ -11,7 +12,7 @@ class Principale {
 		do {
 			visualizzaMenu();
 		}
-		while(/* quando? */);
+		while(a)/* quando? */;
 
 	}
 	
