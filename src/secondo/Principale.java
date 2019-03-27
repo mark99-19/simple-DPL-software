@@ -1,4 +1,5 @@
 package secondo;
+import primo.*;
  
 class Principale {
 	
@@ -30,7 +31,7 @@ class Principale {
 			{
 				
 			}
-			catch(EccezioneLogin loginerrato)
+			(Eccezione_Login loginerrato)
 			{
 				System.out.println("Utenza bloccata, impossibile accedere");
 			}

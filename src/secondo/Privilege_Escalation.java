@@ -2,7 +2,7 @@ package secondo;
  
 import primo.Utente;
 
-public class PrivilegeEscalation extends Pattern{
+public class Privilege_Escalation extends Pattern{
 	
 	private int timestamp = 0;
 	private int livello_dato_tentato;

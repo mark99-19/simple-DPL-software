@@ -29,7 +29,7 @@ public class Controllo_Login extends Controllo_Utente {
 			//catch(Exception exception_login)
 			}
 	
-	public static void controlloContatore(int contatore) throws EccezioneLogin
+	public static void controlloContatore(int contatore) throws Eccezione_Login
 	{
 		switch(contatore) {
 			case 0: Output.visualizzaSchermataLoginGiusta();
@@ -38,7 +38,7 @@ public class Controllo_Login extends Controllo_Utente {
 			break;
 			case 2: Output.visualizzaSchermataLoginCaptcha();
 			break;
-			default: throw new EccezioneLogin();
+			default: throw new Eccezione_Login();
 		}
 	}
 
