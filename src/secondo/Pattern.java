@@ -1,10 +1,7 @@
 package secondo;
 
-public class Pattern {
-	 
-	protected void bloccaUtente()
-	{
-		
-	}
+public class Pattern {				//realizzarla come abstract?
+	
+	
 
 }
