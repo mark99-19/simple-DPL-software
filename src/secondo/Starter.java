@@ -5,7 +5,7 @@ class Principale {
 	
 	static primo.Utente temporaneo = null;
 	//static Controllo_Login controllorelogin = new Controllo_Login();
-	
+	 
 	
 	
 	public static void main(String[] args) {

@@ -9,6 +9,6 @@ public class Privilege_Escalation extends Pattern{
 	private int livello_utente_attuale;
 	private Utente utente_collegato;
 	private String indirizzo_ip;
-	
+	 
 
 }
