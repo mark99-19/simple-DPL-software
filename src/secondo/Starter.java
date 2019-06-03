@@ -1,11 +1,11 @@
 package secondo;
 import primo.*;
  
-class Principale {
+class Starter {
 	
-	static primo.Utente temporaneo = null;
+	private static primo.Utente disessione = null;
 	//static Controllo_Login controllorelogin = new Controllo_Login();
-	 
+	
 	
 	
 	public static void main(String[] args) {
@@ -22,22 +22,31 @@ class Principale {
 	private static void visualizzaMenu()
 	{
 		
-		System.out.println("Benvenuto nel Data Loss Prevention");
+		System.out.println("Benvenuto nel sistema di Data Loss Prevention");
 		System.out.println("Effettua l'autenticazione (max. 3 tentativi)");
-		System.out.println("Prestare attenzione: ogni tentativo errato verrà segnalato");
-		autenticazione();
+		System.out.println("Prestare attenzione: ogni tentativo errato verra' segnalato");
+		if(autenticazione())
+		{
+			System.out.println("Benvenuto "+disessione.getMail()+"");
+		}
 		
 		
 	}
-
-	private static void autenticazione()
+	
+	private static boolean autenticazione()
 	{
 		System.out.print("Indirizzo mail: ");
-		String str1 = Input.inserimento();
+		String str1 = Input.sha512((Input.inserimento()));
 		System.out.print("Password: ");
-		System.out.println();
-		String str2 = Input.inserimento();
-		Controllo_Login.controlloHash(str1, str2);
+		String str2 = Input.sha512((Input.inserimento()));
+		System.out.println();		
+		if(Controllo_Login.controlloHash(str1, str2))
+			{
+				disessione.setMail(str1);
+				return true;
+			}
+		return false;
 	}
 
+	
 }

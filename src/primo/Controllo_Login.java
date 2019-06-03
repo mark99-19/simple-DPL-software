@@ -1,36 +1,45 @@
 package primo; 
  
 import java.sql.*;
+
+import secondo.Input;
  
 public class Controllo_Login extends Controllo_Utente {
 	
-	public static void controlloHash(String hash1, String hash2)
+	
+	public static boolean controlloHash(String hash1, String hash2)			//lo metto boolean, se hai dubbi ne riparliamo
 	{
-		try{  
+		try{
 			//connessione col server mySql
 			Class.forName("com.mysql.jdbc.Driver");  
-			Connection con=DriverManager.getConnection(  
+			Connection con=DriverManager.getConnection(
 			"jdbc:mysql://sql7.freesqldatabase.com/sql7283837","sql7283837","bDzxrtThh8");  
 			//server, username, pwd; 
-			Statement stmt=con.createStatement();  
-			ResultSet rs=stmt.executeQuery("SELECT Indirizzo_mail, Parola FROM Utenti WHERE Indirizzo_mail = " + hash1 + " AND Parola = " + hash2 + ";");  
+			Statement stmt = con.createStatement();  
+			ResultSet rs = stmt.executeQuery("SELECT Indirizzo_mail, Parola, Token FROM Utenti WHERE Indirizzo_mail = " + hash1 + " AND Parola = " + hash2 + " AND Token IS NULL;");
 			while(rs.next()) 
-			//System.out.println(rs.getString(1)+" " +rs.getString(2));  
+			/*RIGA PER DEBUG*/System.out.println(rs.getString(1)+" " +rs.getString(2));  
 			con.close();  
 			//autenticazione eseguita
-			
+			return true;
 			/***********
 			 --------------INSERIRE THROW--------------------
 			 ***********/
 			}
-			catch(Exception e){ 
+			catch(Exception e){
+				//throw new Eccezione_Login tentato;
 				System.err.println(e);
+				return false;
 			}  
 			//catch(Exception exception_login)
 			}
 	
-	public static void controlloContatore(int contatore) throws Eccezione_Login
+	private static void controlloContatore(int contatore) throws Eccezione_Login				//abbiamo scelto di tenerlo localmente per evitare 
 	{
+		/*Aggiungere query SQL per controllo contatore*/
+		
+		
+		
 		switch(contatore) {
 			case 0: Output.visualizzaSchermataLoginGiusta();
 			break;

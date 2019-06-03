@@ -3,10 +3,10 @@ import java.util.Random;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-
+ 
 public class Captcha {
 	
-	private String[] domande = new String[3];
+	private String[] domande = new String[3];			/*Da sistemare UNA VOLTA E PER TUTTE AGGIUNGENDO L'ELENCO DI DOMANDE, E PASSWORD HASHATE*/
 	private String domanda;
 	private String[] pwds = new String[3];
 	private String pwd;
