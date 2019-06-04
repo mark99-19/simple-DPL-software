@@ -1,6 +1,7 @@
 package secondo;
 
-public class Pattern {				//realizzarla come abstract?
+abstract class Pattern {				//realizzarla come abstract?
 	
-
+	
+	
 }

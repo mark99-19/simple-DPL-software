@@ -6,9 +6,9 @@ import java.security.NoSuchAlgorithmException;
  
 public class Captcha {
 	
-	private String[] domande = new String[3];			/*Da sistemare UNA VOLTA E PER TUTTE AGGIUNGENDO L'ELENCO DI DOMANDE, E PASSWORD HASHATE*/
+	private String[] domande = {"Dov'è il Big Ben?", "Qual è la capitale della Birmania?", "Qual è l'integrale di e^x?"};
 	private String domanda;
-	private String[] pwds = new String[3];
+	private String[] pwds = {"4653a0272adfb98c8bb74f2e634c8d0d1d819fff", "7be9748982698fdf7e39def428f9735c20622ccd", "1624dce91de495347430ec2518baf6c6a5328d2e"};
 	private String pwd;
 	int scelta = 0;
 	Random casuale = new Random();

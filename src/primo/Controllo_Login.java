@@ -13,7 +13,7 @@ public class Controllo_Login extends Controllo_Utente {
 			//connessione col server mySql
 			Class.forName("com.mysql.jdbc.Driver");  
 			Connection con=DriverManager.getConnection(
-			"jdbc:mysql://sql7.freesqldatabase.com/sql7283837","sql7283837","bDzxrtThh8");  
+			"jdbc:mysql://milan.onthewifi.com/","sql7283837","bDzxrtThh8");  
 			//server, username, pwd; 
 			Statement stmt = con.createStatement();  
 			ResultSet rs = stmt.executeQuery("SELECT Indirizzo_mail, Parola, Token FROM Utenti WHERE Indirizzo_mail = " + hash1 + " AND Parola = " + hash2 + " AND Token IS NULL;");
