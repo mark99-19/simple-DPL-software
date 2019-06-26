@@ -5,7 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
-  
+   
 
 public class Input {
 	
@@ -29,12 +29,13 @@ public class Input {
 	
 	public static String sha512(String passwordToHash){
 		String generatedPassword = null;
-		String salt = "test";	/*
-		 				Qui sarà da inserire il salt
-		  				*/
+		/*
+		 * no salt
+			String salt = "test";
+		*/
 		    try {
 		         MessageDigest md = MessageDigest.getInstance("SHA-512");
-		         md.update(salt.getBytes(StandardCharsets.UTF_8));
+		         //md.update(salt.getBytes(StandardCharsets.UTF_8));
 		         byte[] bytes = md.digest(passwordToHash.getBytes(StandardCharsets.UTF_8));
 		         StringBuilder sb = new StringBuilder();
 		         for(int i=0; i< bytes.length ;i++){

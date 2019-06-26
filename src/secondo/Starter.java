@@ -1,6 +1,6 @@
 package secondo;
 import primo.*;
- 
+  
 class Starter {
 	
 	private static primo.Utente disessione = null;
@@ -12,11 +12,23 @@ class Starter {
 		
 		//int scelta = 0;
 		
-		do {
 			visualizzaMenu();
-		}
-		while(true)/* quando? */;
+			Runtime.getRuntime().addShutdownHook(new Thread()
+			{				//codice per CTRL + C
+				
+				public void run()
+				{
+					System.out.println("Programma terminato.");
+				}
+			    }
+			);
+		
+		/* quando? */
 
+		
+		
+		
+		
 	}
 	
 	private static void visualizzaMenu()
