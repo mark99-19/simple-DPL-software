@@ -48,12 +48,14 @@ class Starter {
 	private static boolean autenticazione()
 	{
 		System.out.print("Indirizzo mail: ");
-		String str1 = Input.sha512((Input.inserimento()));
+		String str1 = Input.inserimento();
+		String str1h = Input.sha512(str1);
 		System.out.print("Password: ");
 		String str2 = Input.sha512((Input.inserimento()));
 		System.out.println();		
-		if(Controllo_Login.controlloHash(str1, str2))
+		if(Controllo_Login.controlloHash(str1h, str2))
 			{
+				disessione = new Utente();
 				disessione.setMail(str1);
 				return true;
 			}

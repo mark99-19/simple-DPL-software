@@ -40,6 +40,9 @@ public class Utente {
 		this.contatore = contatore;
 	}
 	
+	public Utente()
+	{}
+	
 	
 
 }

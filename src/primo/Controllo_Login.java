@@ -33,8 +33,16 @@ public class Controllo_Login extends Controllo_Utente {
 			dataSource.setServerName("milan.onthewifi.com");
 			dataSource.setDatabaseName("DPO");
 			Connection conn = dataSource.getConnection();
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT indirizzo_mail, parola, token, Contatore FROM Utenti WHERE indirizzo_mail = " + hash1 + " AND parola = " + hash2 /*+ " AND Token IS NULL;"*/);
+	/*		Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT indirizzo_mail AS mail, parola AS password, token AS token, contatore AS contatore FROM Utenti WHERE (indirizzo_mail = " + hash1 + " AND parola = " + hash2+")");
+	*/		
+			String sqlString = "SELECT indirizzo_mail AS mail, parola AS password, token AS token, contatore AS contatore FROM Utenti WHERE indirizzo_mail = ? AND parola = ?; ";
+			PreparedStatement ps = conn.prepareStatement(sqlString);
+			ps.setString(1, hash1);
+			ps.setString(2, hash2);
+			ResultSet rs = ps.executeQuery();
+			
+			
 			
 	/*		rs.close();
 			stmt.close();
