@@ -4,6 +4,7 @@ import primo.*;
 class Starter {
 	
 	private static primo.Utente disessione = null;
+	private static ClientSFTP trasferimento = null;
 	//static Controllo_Login controllorelogin = new Controllo_Login();
 	
 	
@@ -57,10 +58,13 @@ class Starter {
 			{
 				disessione = new Utente();
 				disessione.setMail(str1);
+				trasferimento = new ClientSFTP();
 				return true;
 			}
 		return false;
 	}
+	
+	
 
 	
 }

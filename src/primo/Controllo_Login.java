@@ -1,16 +1,15 @@
 package primo; 
-  
 import java.sql.*;
 
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 import com.mysql.cj.jdbc.MysqlDataSource;
-
 import secondo.Input;
- 
+import secondo.RemoteSSH;
+
 public class Controllo_Login extends Controllo_Utente {
 	
-	private static String pwd = "password";
+	//private RemoteSSH terminale;
 	
 	
 	public static boolean controlloHash(String hash1, String hash2)			//lo metto boolean, se hai dubbi ne riparliamo
@@ -36,28 +35,36 @@ public class Controllo_Login extends Controllo_Utente {
 	/*		Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT indirizzo_mail AS mail, parola AS password, token AS token, contatore AS contatore FROM Utenti WHERE (indirizzo_mail = " + hash1 + " AND parola = " + hash2+")");
 	*/		
-			String sqlString = "SELECT indirizzo_mail AS mail, parola AS password, token AS token, contatore AS contatore FROM Utenti WHERE indirizzo_mail = ? AND parola = ?; ";
+			String sqlString = "SELECT indirizzo_mail, parola, token, contatore FROM Utenti WHERE indirizzo_mail = ? AND parola = ?; ";
 			PreparedStatement ps = conn.prepareStatement(sqlString);
 			ps.setString(1, hash1);
 			ps.setString(2, hash2);
-			ResultSet rs = ps.executeQuery();
-			
+			ResultSet rs = null;
+			try {
+				
+				
+			rs = ps.executeQuery();
 			
 			
 	/*		rs.close();
 			stmt.close();
 			conn.close();
 	*/		
-			
+			if(!rs.next())
+			{
+				System.err.println("Errore! Login non effettuato. Username o password errati!");
+				return false;
+			}
 			while(rs.next())
 			{
+				
 				String token = rs.getString("token");
 				if(token != null)
 				{
 					int contatore = rs.getInt("contatore");
 					switch(contatore)
 					{
-					case 0:
+					case 0:	
 						return true;
 					case 1:
 						return true;
@@ -67,13 +74,18 @@ public class Controllo_Login extends Controllo_Utente {
 					default: //eccezione di blocco utenza	
 					}
 				}
+				
+				
+				
 			}
-			/*RIGA PER DEBUG*/ System.out.println(rs.getString(1)+" " +rs.getString(2));  
-			conn.close();
-			if(rs == null)
+			}
+			
+			catch(Exception e)
 			{
-				System.err.println("Errore! Login non effettuato");
+				System.err.println(e);
 			}
+			/*RIGA PER DEBUG*/ //System.out.println(rs.getString(1)+" " +rs.getString(2));  
+			conn.close();
 			//autenticazione eseguita
 			return true;
 			/***********
@@ -102,7 +114,7 @@ public class Controllo_Login extends Controllo_Utente {
 			case 2: Output.visualizzaSchermataLoginCaptcha();
 			break;
 			default: throw new Eccezione_Login();						//circostanza sospetta, da segnalare
-		}
+		}  
 	}
 
 }
