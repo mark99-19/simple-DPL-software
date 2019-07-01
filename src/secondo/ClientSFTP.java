@@ -2,6 +2,7 @@ package secondo;
 
 /* -*-mode:java; c-basic-offset:2; indent-tabs-mode:nil -*- */
 /**
+ * 
  * This program will demonstrate the sftp protocol support.
  *   $ CLASSPATH=.:../build javac Sftp.java
  *   $ CLASSPATH=.:../build java Sftp

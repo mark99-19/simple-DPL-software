@@ -1,5 +1,6 @@
 package secondo;
-import primo.*;
+import primo.Utente;
+import primo.Controllo_Login;
   
 class Starter {
 	

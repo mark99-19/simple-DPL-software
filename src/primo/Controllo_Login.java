@@ -5,7 +5,7 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 import com.mysql.cj.jdbc.MysqlDataSource;
 import secondo.Input;
-import secondo.RemoteSSH;
+import secondo.ClientSFTP;;
 
 public class Controllo_Login extends Controllo_Utente {
 	
