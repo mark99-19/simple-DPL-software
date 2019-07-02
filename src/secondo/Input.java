@@ -21,10 +21,19 @@ public class Input {
 		/*return scannerizzato;*/
 	}
 	
-	static private void verificaBot() throws NoSuchAlgorithmException
+	
+	
+	static public boolean verificaBot() throws NoSuchAlgorithmException
 	{
 		Captcha codice_controllo;
 		codice_controllo = new Captcha();
+		codice_controllo.proponiDomanda();
+		if(codice_controllo.controllaDomanda(inserimento()))
+		{
+			return true;
+		}
+		return false;
+		
 	}
 	
 	public static String sha512(String passwordToHash){

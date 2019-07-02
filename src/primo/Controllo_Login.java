@@ -5,6 +5,7 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 import com.mysql.cj.jdbc.MysqlDataSource;
 import secondo.Input;
+import secondo.Captcha;
 import secondo.ClientSFTP;;
 
 public class Controllo_Login extends Controllo_Utente {
@@ -50,33 +51,41 @@ public class Controllo_Login extends Controllo_Utente {
 			stmt.close();
 			conn.close();
 	*/		
-			if(!rs.next())
-			{
-				System.err.println("Errore! Login non effettuato. Username o password errati!");
-				return false;
-			}
 			while(rs.next())
 			{
 				
 				String token = rs.getString("token");
-				if(token != null)
+				if(token == null)
 				{
 					int contatore = rs.getInt("contatore");
 					switch(contatore)
 					{
-					case 0:	
+					case 0:
+						
 						return true;
 					case 1:
+						
 						return true;
 					case 2:
-						Output.visualizzaSchermataLoginCaptcha();
-						return false;
-					default: //eccezione di blocco utenza	
+						return Input.verificaBot();
+						
+						//Output.visualizzaSchermataLoginCaptcha();
+						
+					default: Eccezione_Login blocco = new Eccezione_Login();	
 					}
+				}
+				else
+				{
+					return false;
 				}
 				
 				
 				
+			}
+			if(!rs.next())
+			{
+				System.err.println("Errore! Login non effettuato. Username o password errati!");
+				return false;
 			}
 			}
 			
@@ -100,9 +109,9 @@ public class Controllo_Login extends Controllo_Utente {
 			//catch(Exception exception_login)
 			}
 	
-	private static void controlloContatore(int contatore) throws Eccezione_Login				//abbiamo scelto di tenerlo localmente per evitare 
+/*	private static void controlloContatore(int contatore) throws Eccezione_Login				//abbiamo scelto di tenerlo localmente per evitare 
 	{
-		/*Aggiungere query SQL per controllo contatore*/
+		//Aggiungere query SQL per controllo contatore
 		
 		
 		
@@ -115,6 +124,6 @@ public class Controllo_Login extends Controllo_Utente {
 			break;
 			default: throw new Eccezione_Login();						//circostanza sospetta, da segnalare
 		}  
-	}
+	}*/
 
 }

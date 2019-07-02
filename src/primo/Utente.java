@@ -4,6 +4,7 @@ public class Utente {
 	
 	private int livello;
 	private String mail;
+	private String hmail;
 	private int contatore;
 	
 	public void reset_contatore()
@@ -41,7 +42,19 @@ public class Utente {
 	}
 	
 	public Utente()
-	{}
+	{
+		
+	}
+
+	public String getHmail() {
+		return hmail;
+	}
+
+	public void setHmail(String hmail) {
+		this.hmail = hmail;
+	}
+	
+	
 	
 	
 

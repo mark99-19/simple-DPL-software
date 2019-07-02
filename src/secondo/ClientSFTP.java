@@ -18,6 +18,7 @@ import java.awt.*;
 import javax.swing.*;
 
 public class ClientSFTP{
+	private boolean condition = true;
   {
 
     try{
@@ -49,7 +50,7 @@ public class ClientSFTP{
       String str;
       int level=0;
 
-      while(true){
+      while(condition){
         out.print("sftp> ");
 	cmds.removeAllElements();
         i=in.read(buf, 0, 1024);
@@ -76,8 +77,11 @@ public class ClientSFTP{
 	  break;
 	}
 	if(cmd.equals("exit")){
-          c.exit();
-	  break;
+		this.condition= false;
+          //c.exit();
+		break;
+		
+	 
 	}
  	if(cmd.equals("rekey")){
  	  session.rekey();

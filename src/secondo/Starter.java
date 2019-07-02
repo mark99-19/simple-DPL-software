@@ -2,7 +2,7 @@ package secondo;
 import primo.Utente;
 import primo.Controllo_Login;
   
-class Starter {
+public class Starter {
 	
 	private static primo.Utente disessione = null;
 	private static ClientSFTP trasferimento = null;
@@ -17,9 +17,9 @@ class Starter {
 			visualizzaMenu();
 			Runtime.getRuntime().addShutdownHook(new Thread()
 			{				//codice per CTRL + C
-				
 				public void run()
 				{
+					
 					System.out.println("Programma terminato.");
 				}
 			    }
@@ -42,6 +42,8 @@ class Starter {
 		if(autenticazione())
 		{
 			System.out.println("Benvenuto "+disessione.getMail()+"");
+			System.out.println("La sessione comincerà a breve:");
+			trasferimento = new ClientSFTP();
 		}
 		
 		
@@ -59,7 +61,8 @@ class Starter {
 			{
 				disessione = new Utente();
 				disessione.setMail(str1);
-				trasferimento = new ClientSFTP();
+				disessione.setHmail(str1h);
+				
 				return true;
 			}
 		return false;
