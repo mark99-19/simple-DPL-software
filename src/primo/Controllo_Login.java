@@ -7,7 +7,7 @@ import com.mysql.cj.jdbc.MysqlDataSource;
 import secondo.Input;
 import secondo.Captcha;
 import secondo.ClientSFTP;;
-
+ 
 public class Controllo_Login extends Controllo_Utente {
 	
 	//private RemoteSSH terminale;
@@ -61,32 +61,36 @@ public class Controllo_Login extends Controllo_Utente {
 					switch(contatore)
 					{
 					case 0:
-						
 						return true;
 					case 1:
-						
 						return true;
 					case 2:
-						return Input.verificaBot();
+						System.out.println("Vi sono 2 tentativi errati per la tua utenza.");
+						System.out.println("Rispondere alla seguente domanda per verificare di non essere un automa");
+						if(Input.verificaBot())
+						{
+							return true;
+						}
 						
 						//Output.visualizzaSchermataLoginCaptcha();
 						
-					default: Eccezione_Login blocco = new Eccezione_Login();	
+					default: System.err.println("Numero di tentativi errati: "+contatore+". Impossibile accedere");
+						Eccezione_Login blocco = new Eccezione_Login();		//mi genererà un token, e setterà il contatore a 3
+							//DA RINOMINARE CON EccezioneBloccaUtenza
+					return false;
+					
 					}
 				}
-				else
-				{
 					return false;
-				}
+				
 				
 				
 				
 			}
-			if(!rs.next())
-			{
-				System.err.println("Errore! Login non effettuato. Username o password errati!");
+			//blocco "else"
+				System.err.println("Errore: login non effettuato. Username o password errati!");
 				return false;
-			}
+			
 			}
 			
 			catch(Exception e)
