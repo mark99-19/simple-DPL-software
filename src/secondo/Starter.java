@@ -1,7 +1,7 @@
 package secondo;
 import primo.Utente;
 import primo.Controllo_Login;
-  
+   
 public class Starter {
 	
 	private static primo.Utente disessione = null;
@@ -41,9 +41,14 @@ public class Starter {
 		System.out.println("Prestare attenzione: ogni tentativo errato verra' segnalato");
 		if(autenticazione())
 		{
+			System.out.println("Autenticazione riuscita.");
 			System.out.println("Benvenuto "+disessione.getMail()+"");
 			System.out.println("La sessione comincerà a breve:");
 			trasferimento = new ClientSFTP();
+		}
+		else
+		{
+			System.err.println("Errore! Login non effettuato. Username o password errati!");
 		}
 		
 		
