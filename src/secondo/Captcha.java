@@ -2,7 +2,7 @@ package secondo;
 import java.util.Random;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
+ 
  
 public class Captcha {
 	
@@ -16,28 +16,33 @@ public class Captcha {
 	public Captcha() throws NoSuchAlgorithmException
 	{
 		this.domanda = proponiDomanda();
-		this.pwd = Input.sha1(pwds[scelta]);
+		this.pwd = pwds[scelta];
 		//this.scelta = 0;
 	}
 	
 	String proponiDomanda()
 	{
-		scelta = casuale.nextInt(2);
+		this.scelta = casuale.nextInt(3);
 		return domande[scelta];
 	}
 	
 	boolean controllaDomanda(String challenge)
 	{
 		try {
-			if(challenge.equals(Input.sha1(this.pwd)));
+		String hchallenge = Input.sha1(challenge);
+		boolean condizione = this.pwd.equals(hchallenge);
+		
+			if(condizione)			//non funziona minimamente, è da vedere a mente serena
 			{
+				//hchallenge.equals(this.pwd)
 				return true;
 			}
+			
 		} catch (NoSuchAlgorithmException e) {
 			System.err.println(e);
 		}
-		return false;
 		
+		return false;
 	}
 	
 	 
