@@ -5,7 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
-   
+    
 
 public class Input {
 	
@@ -15,7 +15,7 @@ public class Input {
 	static public String inserimento()
 	{
 		String parola;
-		parola = tastiera.next();
+		parola = tastiera.nextLine();
 		
 		return parola;
 		/*return scannerizzato;*/
@@ -27,7 +27,7 @@ public class Input {
 	{
 		Captcha codice_controllo;
 		codice_controllo = new Captcha();
-		codice_controllo.proponiDomanda();
+		System.out.println(codice_controllo.proponiDomanda());
 		if(codice_controllo.controllaDomanda(inserimento()))
 		{
 			return true;
