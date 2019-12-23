@@ -1,9 +1,11 @@
 package primo;
 
 import java.security.MessageDigest;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import com.mysql.cj.jdbc.MysqlDataSource;
 import java.sql.*;
 import secondo.Starter;
  
@@ -78,7 +80,7 @@ public class Controllo_FS implements Runnable{
 		}
 		//Starter.diSessione.livello
 		
-		if(Starter.disessione.livello != level) {
+		if(Starter.disessione.getLivello() != level) {
 			//lancia eccezione blocca utenza
 			
 			throw new Eccezione_BloccoUtenza();

@@ -5,7 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
-    
+   
 
 public class Input {
 	
@@ -15,7 +15,7 @@ public class Input {
 	static public String inserimento()
 	{
 		String parola;
-		parola = tastiera.nextLine();
+		parola = tastiera.next();
 		
 		return parola;
 		/*return scannerizzato;*/
@@ -68,29 +68,5 @@ public class Input {
          
         return sb.toString();
     }
-	
-	public static void connessioneSQL()
-	{
-		//	connessioneSSH();
-		/*	NON FUNZIONA. MAI PIU' DRIVER MANAGER. PER I POSTERI:
-		 * String dbName = "DPO";
-			String dbUserName = "root";
-			String dbPassword = "password";
-			//connessione col server mySql
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			//String connectionString = "UPDATE MyTableName " + "SET email = 'ripon.wasim@smile.com' WHERE email='peace@happy.com'";
-			String connectionString = "jdbc:mysql://127.0.0.1:3306/" + dbName + "?user=" + dbUserName + "&password=" + dbPassword + "&useUnicode=true&characterEncoding=UTF-8";  
-			
-		*/	
-			MysqlDataSource dataSource = new MysqlDataSource();
-			dataSource.setUser("root");
-			dataSource.setPassword("password");
-			dataSource.setServerName("milan.onthewifi.com");
-			dataSource.setDatabaseName("DPO");
-			Connection conn = dataSource.getConnection();
-	/*		Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT indirizzo_mail AS mail, parola AS password, token AS token, contatore AS contatore FROM Utenti WHERE (indirizzo_mail = " + hash1 + " AND parola = " + hash2+")");
-	*/
-	}
 
 }

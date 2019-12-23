@@ -12,9 +12,11 @@ import secondo.Starter;
 
 public class Token {
 	
-	private String token;
-	
-	public Token () {
+	private String token = null;
+	private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
+	private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder(); //threadsafe
+
+	public Token() {
 		this.token = generateNewToken();
 	}
 	
@@ -25,9 +27,6 @@ public class Token {
 	public void setToken(String token) {
 		this.token = token;
 	}
-	
-	private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
-	private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder(); //threadsafe
 	
 	private String generateNewToken() {
 	    byte[] randomBytes = new byte[24];
@@ -54,7 +53,7 @@ public class Token {
 				//-------------------------------------------------------------
 				PreparedStatement ps = conn.prepareStatement(sqlString);
 				ps.setString(1, this.token);
-				ps.setString(2, Starter.disessione.gethmail());
+				ps.setString(2, Starter.disessione.getHmail());
 				conn.close();
 			}
 			catch(Exception e){
@@ -77,7 +76,7 @@ public class Token {
 				PreparedStatement ps = conn.prepareStatement(sqlString);
 				ps.setString(1, this.token);
 				conn.close();
-			}
+		}
 		catch(Exception e){
 			System.err.println(e);
 		}

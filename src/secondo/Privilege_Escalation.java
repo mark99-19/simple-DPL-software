@@ -1,12 +1,12 @@
 package secondo;
- 
+
 import primo.Utente;
 
 public class Privilege_Escalation extends Pattern{
 	
-	public Privilege_Escalation()
+	public Privilege_Escalation(Utente utente_collegato)
 	{
-		
+		this.utente_collegato = utente_collegato;
 	}
 	
 	private int timestamp = 0;

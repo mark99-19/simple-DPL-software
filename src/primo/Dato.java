@@ -17,7 +17,5 @@ public class Dato {
 	public void setHash_dato(String hash_dato) {
 		this.hash_dato = hash_dato;
 	}
-	
-	
-
 }
+  

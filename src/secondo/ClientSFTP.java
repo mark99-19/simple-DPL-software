@@ -1,5 +1,5 @@
 package secondo;
- 
+
 /* -*-mode:java; c-basic-offset:2; indent-tabs-mode:nil -*- */
 /**
  * 
@@ -227,10 +227,14 @@ public class ClientSFTP{
 	  try{
 	    SftpProgressMonitor monitor=new MyProgressMonitor();
 	    if(cmd.startsWith("get")){
+	     
+	      
 	      int mode=ChannelSftp.OVERWRITE;
 	      if(cmd.equals("get-resume")){ mode=ChannelSftp.RESUME; }
 	      else if(cmd.equals("get-append")){ mode=ChannelSftp.APPEND; } 
 	      c.get(p1, p2, monitor, mode);
+	    
+	      
 	    }
 	    else{ 
 	      int mode=ChannelSftp.OVERWRITE;

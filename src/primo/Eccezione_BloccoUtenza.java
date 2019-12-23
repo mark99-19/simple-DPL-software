@@ -1,6 +1,5 @@
 package primo;
 
-import java.sql.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -13,13 +12,15 @@ public class Eccezione_BloccoUtenza extends Exception{
 	
 	//aggiunge il token al datbase e dopo mezz ora lo rimuove 
  
+	/**
+	 * 
+	 */
 	Timer timer = new Timer();
-	TimerTask task = new Task();
+	TimerTask task = new TaskData();
 	Token tokenUtente = new Token();
-	
-	tokenUtente.addToken();
 
+	tokenUtente.addToken();
 	timer.schedule(task, 1800000);
-	
+
 } 
    

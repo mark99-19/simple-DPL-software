@@ -1,14 +1,15 @@
 package primo; 
 import java.sql.*;
 
+
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 import com.mysql.cj.jdbc.MysqlDataSource;
 import secondo.Input;
 import secondo.Captcha;
-import secondo.ClientSFTP;
- 
-public class Controllo_Login extends Controllo_Utente {
+import secondo.ClientSFTP;;
+
+public class Controllo_Login {
 	
 	//private RemoteSSH terminale;
 	
@@ -16,12 +17,26 @@ public class Controllo_Login extends Controllo_Utente {
 	public static boolean controlloHash(String hash1, String hash2)			//lo metto boolean, se hai dubbi ne riparliamo
 	{
 		try{
-		
+		//	connessioneSSH();
+		/*	NON FUNZIONA. MAI PIU' DRIVER MANAGER. PER I POSTERI:
+		 * String dbName = "DPO";
+			String dbUserName = "root";
+			String dbPassword = "password";
+			//connessione col server mySql
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			//String connectionString = "UPDATE MyTableName " + "SET email = 'ripon.wasim@smile.com' WHERE email='peace@happy.com'";
+			String connectionString = "jdbc:mysql://127.0.0.1:3306/" + dbName + "?user=" + dbUserName + "&password=" + dbPassword + "&useUnicode=true&characterEncoding=UTF-8";  
 			
-			Input.connessioneSQL();
-			
-			
-			
+		*/	
+			MysqlDataSource dataSource = new MysqlDataSource();
+			dataSource.setUser("root");
+			dataSource.setPassword("password");
+			dataSource.setServerName("milan.onthewifi.com");
+			dataSource.setDatabaseName("DPO");
+			Connection conn = dataSource.getConnection();
+	/*		Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT indirizzo_mail AS mail, parola AS password, token AS token, contatore AS contatore FROM Utenti WHERE (indirizzo_mail = " + hash1 + " AND parola = " + hash2+")");
+	*/		
 			String sqlString = "SELECT indirizzo_mail, parola, token, contatore FROM Utenti WHERE indirizzo_mail = ? AND parola = ?; ";
 			PreparedStatement ps = conn.prepareStatement(sqlString);
 			ps.setString(1, hash1);
@@ -47,36 +62,34 @@ public class Controllo_Login extends Controllo_Utente {
 					switch(contatore)
 					{
 					case 0:
+						
 						return true;
 					case 1:
+						
 						return true;
 					case 2:
 						System.out.println("Vi sono 2 tentativi errati per la tua utenza.");
 						System.out.println("Rispondere alla seguente domanda per verificare di non essere un automa");
-						if(Input.verificaBot())
-						{
-							return true;
-						}
+						return Input.verificaBot();
 						
 						//Output.visualizzaSchermataLoginCaptcha();
 						
-					default: System.err.println("Numero di tentativi errati: "+contatore+". Impossibile accedere");
-						Eccezione_Login blocco = new Eccezione_Login();		//mi genererà un token, e setterà il contatore a 3
-							//DA RINOMINARE CON EccezioneBloccaUtenza
-					return false;
-					
+					default: Eccezione_Login blocco = new Eccezione_Login();	
 					}
 				}
+				else
+				{
 					return false;
-				
+				}
 				
 				
 				
 			}
-			//blocco "else"
-				System.err.println("Errore: login non effettuato. Username o password errati!");
+			if(!rs.next())
+			{
+				System.err.println("Errore! Login non effettuato. Username o password errati!");
 				return false;
-			
+			}
 			}
 			
 			catch(Exception e)
